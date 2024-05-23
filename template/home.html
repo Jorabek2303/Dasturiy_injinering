@@ -1,0 +1,130 @@
+{% load static %}
+<head>
+    <title>Home</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        
+        nav a:hover {
+            background-color: #555;
+        }
+        
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-top: 50px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          
+          .profile-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          
+          .profile-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+          }
+          
+          .info-item {
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .info-item label {
+            font-weight: bold;
+            margin-bottom: 5px;
+          }
+          
+          .info-item span {
+            font-size: 16px;
+          }
+          
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Registratsiya</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        
+    </header>
+    <div class="profile-container">
+        <h1>Profil ma'lumotlari</h1>
+        <div class="profile-info">
+          <div class="info-item">
+            <label>Familiya:</label>
+            <span>{{ profile.last_name }}</span>
+          </div>
+          <div class="info-item">
+            <label>Username:</label>
+            <span>{{ profile.user.username }}</span>
+          </div>
+          <div class="info-item">
+            <label>Email:</label>
+            <span>{{ profile.user_email }}</span>
+          </div>
+          <div class="info-item">
+            <label>Tug'ilgan sana:</label>
+            <span>{{ profile.name }}</span>
+          </div>
+          <div class="info-item">
+            <label>Barmoq izi:</label>
+            <span>{{ profile.finger_image }}</span>
+          </div>
+          <div class="info-item">
+            <label>Rasmi:</label>
+            <span>{{ profile.user_image }}</span>
+          </div>
+        </div>
+      </div>
+</body>

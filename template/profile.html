@@ -1,0 +1,87 @@
+{% extends 'home.html' %}
+<head>
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        
+        .profile-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+        
+        .profile-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profil</h1>
+        <form action="{% url 'profile' pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="name">Ism:</label>
+                {{profile.name}}
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                {{profile.user_email}}
+            </div>
+            <div class="input-group">
+                <label for="finger-image">Barmoq izi:</label>
+                {{profile.finger_image}}
+            </div>
+            <div class="input-group">
+                <label for="user-image">Foydalanuvchi rasmi:</label>
+                {{profile.user_image}}
+            </div>
+            <button type="submit">Saqlash</button>
+        </form>
+    </div>
+</body>
